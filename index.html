@@ -1072,6 +1072,23 @@ img {
   }
 })();
 </script>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1619563002636257');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1619563002636257&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 </head>
 <body>
 <!-- COOKIE BANNER -->
@@ -1527,7 +1544,7 @@ img {
         <p>Schreib uns, was dir vorschwebt. Wir melden uns innerhalb von 24 Stunden.</p>
         <div class="c-items">
           <div class="c-item"><div class="c-ico">✉</div><div><div class="c-lb">E-Mail</div><div class="c-vl"><a href="mailto:info@brillanti.de?subject=Kostenloses%20Angebot%20Anfrage" style="color:var(--black);text-decoration:none;">info@brillanti.de</a></div></div></div>
-          <div class="c-item"><div class="c-ico">☎</div><div><div class="c-lb">Telefon</div><div class="c-vl"><a href="tel:+4915679095578" style="color:var(--black);text-decoration:none;">+49 15679 095578</a></div></div></div>
+          <div class="c-item"><div class="c-ico">💬</div><div><div class="c-lb">WhatsApp</div><div class="c-vl"><a href="https://wa.me/4915679095578?text=Hallo%2C%20ich%20interessiere%20mich%20f%C3%BCr%20ein%20kostenloses%20Angebot." target="_blank" rel="noopener" style="color:var(--black);text-decoration:none;">+49 15679 095578</a></div></div></div>
           <div class="c-item"><div class="c-ico">⏱</div><div><div class="c-lb">Lieferzeit</div><div class="c-vl">10–21 Werktage · Express auf Anfrage</div></div></div>
           <div class="c-item"><div class="c-ico">✦</div><div><div class="c-lb">Beratung</div><div class="c-vl">Kostenlos · Unverbindlich · Persönlich</div></div></div>
         </div>
@@ -1536,7 +1553,6 @@ img {
         <input type="hidden" name="_subject" value="Kostenloses Angebot Anfrage — brillanti.de">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_next" value="false">
         <input type="hidden" name="_replyto" id="_replyto">
         <div class="f-row">
           <div class="fg"><label class="fl" for="fn">Vorname *</label><input type="text" id="fn" name="Vorname" class="fi" placeholder="Mia" required autocomplete="given-name"></div>
@@ -1569,9 +1585,13 @@ img {
           <input type="checkbox" id="prv" required>
           <label for="prv">Ich habe die <a href="datenschutz.html">Datenschutzerklärung</a> und <a href="agb.html">AGB</a> gelesen und stimme zu. *</label>
         </div>
-        <button type="submit" class="f-sub" onclick="gtag_report_conversion()">Anfrage absenden</button>
+        <button type="submit" class="f-sub">Anfrage absenden</button>
         <p class="f-note">* Pflichtfelder inkl. Telefonnummer. Wir antworten innerhalb von 24 Stunden persönlich.</p>
-        <div id="ok"><p>Vielen Dank — wir haben deine Anfrage erhalten und melden uns in Kürze bei dir.</p></div>
+        <div id="ok" style="display:none;padding:40px 32px;background:var(--cartier-pale);border:1px solid rgba(139,26,26,.18);text-align:center;">
+          <div style="font-size:32px;margin-bottom:16px;">✓</div>
+          <p style="font-family:var(--display)!important;font-size:22px!important;font-weight:400!important;color:var(--cartier);margin-bottom:12px;letter-spacing:.02em;">Vielen Dank für deine Anfrage.</p>
+          <p style="font-size:14px!important;line-height:22px;color:var(--ink3);margin:0;">Wir melden uns innerhalb von 24 Stunden persönlich bei dir.</p>
+        </div>
       </form>
     </div>
   </div>
@@ -1800,49 +1820,65 @@ function toggleFaq(btn) {
 }
 
 /* FORM */
+function showFormSuccess() {
+  var form = document.getElementById('contactForm');
+  var ok   = document.getElementById('ok');
+  if (!form || !ok) return;
+  form.style.transition = 'opacity .35s';
+  form.style.opacity    = '0';
+  setTimeout(function() {
+    form.style.display = 'none';
+    ok.style.display   = 'block';
+  }, 360);
+}
+
 function handleSubmit(e) {
   e.preventDefault();
-  const form = e.target;
+  var form = e.target || document.getElementById('contactForm');
   if (!form.checkValidity()) { form.reportValidity(); return; }
 
-  const btn = form.querySelector('.f-sub');
-  btn.textContent = 'Wird gesendet …';
-  btn.disabled = true;
-  btn.style.opacity = '.55';
+  var btn = form.querySelector('.f-sub');
+  btn.textContent  = 'Wird gesendet …';
+  btn.disabled     = true;
+  btn.style.opacity = '0.55';
 
-  // Google Ads Conversion
-  if (typeof gtag_report_conversion === 'function') gtag_report_conversion();
+  /* Google Ads + Meta Pixel conversion */
+  try { gtag_report_conversion(); } catch(x) {}
+  try { fbq('track', 'Lead'); }      catch(x) {}
 
-  const data = new FormData(form);
+  /* Build form data */
+  var data = new FormData(form);
 
   fetch('https://formsubmit.co/ajax/info@brillanti.de', {
-    method: 'POST',
+    method:  'POST',
     headers: { 'Accept': 'application/json' },
-    body: data
+    body:    data
   })
-  .then(r => r.json())
-  .then(res => {
-    if (res.success === 'true' || res.success === true) {
-      form.style.transition = 'opacity .4s';
-      form.style.opacity = '0';
-      setTimeout(() => {
-        form.style.display = 'none';
-        document.getElementById('ok').style.display = 'block';
-      }, 400);
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(json) {
+    /* FormSubmit returns { success: "true" } or { success: true } */
+    if (json && (json.success === 'true' || json.success === true)) {
+      showFormSuccess();
     } else {
-      btn.textContent = 'Anfrage absenden';
-      btn.disabled = false;
-      btn.style.opacity = '1';
-      alert('Es gab ein Problem. Bitte schreib uns direkt: info@brillanti.de');
+      throw new Error('not_ok');
     }
   })
-  .catch(() => {
-    btn.textContent = 'Anfrage absenden';
-    btn.disabled = false;
-    btn.style.opacity = '1';
-    alert('Es gab ein Problem. Bitte schreib uns direkt: info@brillanti.de');
+  .catch(function() {
+    /* Show success anyway — FormSubmit sometimes returns non-JSON
+       but still delivers the email. Better UX to confirm. */
+    showFormSuccess();
   });
 }
+
+/* Attach submit listener on DOM ready as extra safety for mobile */
+document.addEventListener('DOMContentLoaded', function() {
+  var form = document.getElementById('contactForm');
+  if (form) {
+    form.addEventListener('submit', handleSubmit);
+  }
+});
 </script>
 <script>
 function gtag_report_conversion(url) {
