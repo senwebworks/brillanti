@@ -891,6 +891,16 @@ footer { background: var(--cartier-dk); color: var(--white); padding: 72px 52px 
 }
 
 </style>
+<!--
+  FORMSPREE SETUP (einmalig erforderlich):
+  1. Gehe zu https://formspree.io/register
+  2. Registriere dich mit info@brillanti.de
+  3. Erstelle ein neues Formular → du bekommst eine Form-ID (z.B. xpwzqkrb)
+  4. Ersetze in dieser Datei BRILLANTI_FORM_ID durch deine Form-ID
+  5. Bestätige die E-Mail-Adresse info@brillanti.de
+  Danach kommen alle Anfragen direkt an info@brillanti.de.
+  Alternativ: Falls kein Formspree, öffnet das Formular automatisch den E-Mail-Client als Fallback.
+-->
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18176205430"></script>
 <script>
@@ -1359,12 +1369,14 @@ footer { background: var(--cartier-dk); color: var(--white); padding: 72px 52px 
           <div class="c-item"><div class="c-ico">✦</div><div><div class="c-lb">Beratung</div><div class="c-vl">Kostenlos · Unverbindlich · Persönlich</div></div></div>
         </div>
       </div>
-      <form class="form rr" id="contactForm" onsubmit="handleSubmit(event)" novalidate>
+      <form class="form rr" id="contactForm" action="https://formspree.io/f/BRILLANTI_FORM_ID" method="POST" onsubmit="handleSubmit(event)" novalidate>
+        <input type="hidden" name="_subject" value="Neue Anfrage über brillanti.de">
+        <input type="hidden" name="_replyto" id="_replyto">
         <div class="f-row">
           <div class="fg"><label class="fl" for="fn">Vorname *</label><input type="text" id="fn" class="fi" placeholder="Mia" required autocomplete="given-name"></div>
           <div class="fg"><label class="fl" for="ln">Nachname *</label><input type="text" id="ln" class="fi" placeholder="Müller" required autocomplete="family-name"></div>
         </div>
-        <div class="fg"><label class="fl" for="em">E-Mail *</label><input type="email" id="em" class="fi" placeholder="mia@beispiel.de" required autocomplete="email"></div>
+        <div class="fg"><label class="fl" for="em">E-Mail *</label><input type="email" id="em" class="fi" placeholder="mia@beispiel.de" required autocomplete="email" oninput="document.getElementById('_replyto').value=this.value"></div>
         <div class="fg"><label class="fl" for="ph">Telefon *</label><input type="tel" id="ph" class="fi" placeholder="+49 170 123 4567" required autocomplete="tel"></div>
         <div class="fg">
           <label class="fl" for="jw">Wunsch *</label>
@@ -1626,12 +1638,66 @@ function handleSubmit(e) {
   e.preventDefault();
   const form = e.target;
   if (!form.checkValidity()) { form.reportValidity(); return; }
+
   const btn = form.querySelector('.f-sub');
   btn.textContent = 'Wird gesendet …'; btn.disabled = true; btn.style.opacity = '.55';
-  setTimeout(() => {
-    form.style.transition = 'opacity .4s'; form.style.opacity = '0';
-    setTimeout(() => { form.style.display='none'; document.getElementById('ok').style.display='block'; }, 420);
-  }, 1200);
+
+  // Google Ads Conversion
+  if (typeof gtag_report_conversion === 'function') gtag_report_conversion();
+
+  // Collect form data
+  const data = new FormData(form);
+
+  // Submit to Formspree (replace BRILLANTI_FORM_ID after account setup)
+  fetch(form.action, {
+    method: 'POST',
+    body: data,
+    headers: { 'Accept': 'application/json' }
+  })
+  .then(response => {
+    if (response.ok) {
+      // Success
+      form.style.transition = 'opacity .4s';
+      form.style.opacity = '0';
+      setTimeout(() => {
+        form.style.display = 'none';
+        document.getElementById('ok').style.display = 'block';
+      }, 420);
+    } else {
+      // Formspree error — show fallback message
+      response.json().then(data => {
+        btn.textContent = 'Fehler — bitte direkt mailen';
+        btn.disabled = false; btn.style.opacity = '1';
+        btn.style.background = '#8B1A1A';
+        // Fallback: open mailto
+        const fields = Object.fromEntries(new FormData(form));
+        const subject = encodeURIComponent('Anfrage über brillanti.de');
+        const body = encodeURIComponent(
+          'Vorname: ' + (fields.fn||'') + '\n' +
+          'Nachname: ' + (fields.ln||'') + '\n' +
+          'E-Mail: ' + (fields.em||'') + '\n' +
+          'Telefon: ' + (fields.ph||'') + '\n' +
+          'Wunsch: ' + (fields.jw||'') + '\n' +
+          'Nachricht: ' + (fields.mg||'')
+        );
+        window.location.href = 'mailto:info@brillanti.de?subject=' + subject + '&body=' + body;
+      });
+    }
+  })
+  .catch(() => {
+    // Network error fallback: open mailto directly
+    const fields = Object.fromEntries(new FormData(form));
+    const subject = encodeURIComponent('Anfrage über brillanti.de');
+    const body = encodeURIComponent(
+      'Vorname: ' + (fields.fn||'') + '\n' +
+      'Nachname: ' + (fields.ln||'') + '\n' +
+      'E-Mail: ' + (fields.em||'') + '\n' +
+      'Telefon: ' + (fields.ph||'') + '\n' +
+      'Wunsch: ' + (fields.jw||'') + '\n' +
+      'Nachricht: ' + (fields.mg||'')
+    );
+    window.location.href = 'mailto:info@brillanti.de?subject=' + subject + '&body=' + body;
+  });
 }
 </script>
 <script>
