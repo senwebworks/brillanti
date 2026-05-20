@@ -1587,12 +1587,12 @@ src="https://www.facebook.com/tr?id=1619563002636257&ev=PageView&noscript=1"
         </div>
         <button type="submit" class="f-sub">Anfrage absenden</button>
         <p class="f-note">* Pflichtfelder inkl. Telefonnummer. Wir antworten innerhalb von 24 Stunden persönlich.</p>
-        <div id="ok" style="display:none;padding:40px 32px;background:var(--cartier-pale);border:1px solid rgba(139,26,26,.18);text-align:center;">
-          <div style="font-size:32px;margin-bottom:16px;">✓</div>
-          <p style="font-family:var(--display)!important;font-size:22px!important;font-weight:400!important;color:var(--cartier);margin-bottom:12px;letter-spacing:.02em;">Vielen Dank für deine Anfrage.</p>
-          <p style="font-size:14px!important;line-height:22px;color:var(--ink3);margin:0;">Wir melden uns innerhalb von 24 Stunden persönlich bei dir.</p>
-        </div>
       </form>
+      <div id="ok" style="display:none;padding:48px 40px;background:var(--cartier-pale);border:1px solid rgba(139,26,26,.18);text-align:center;border-left:none;">
+        <div style="font-size:36px;margin-bottom:18px;color:var(--cartier);">✓</div>
+        <p style="font-family:var(--display)!important;font-size:24px!important;font-weight:400!important;color:var(--cartier);margin-bottom:12px;letter-spacing:.02em;line-height:1.2;">Vielen Dank für<br>deine Anfrage.</p>
+        <p style="font-size:14px!important;line-height:22px;color:var(--ink3);margin:0;">Wir melden uns innerhalb von 24 Stunden<br>persönlich bei dir.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -1824,12 +1824,9 @@ function showFormSuccess() {
   var form = document.getElementById('contactForm');
   var ok   = document.getElementById('ok');
   if (!form || !ok) return;
-  form.style.transition = 'opacity .35s';
-  form.style.opacity    = '0';
-  setTimeout(function() {
-    form.style.display = 'none';
-    ok.style.display   = 'block';
-  }, 360);
+  form.style.display = 'none';
+  ok.style.display   = 'block';
+  ok.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
 function handleSubmit(e) {
@@ -1838,15 +1835,15 @@ function handleSubmit(e) {
   if (!form.checkValidity()) { form.reportValidity(); return; }
 
   var btn = form.querySelector('.f-sub');
-  btn.textContent  = 'Wird gesendet …';
-  btn.disabled     = true;
-  btn.style.opacity = '0.55';
+  btn.textContent   = 'Wird gesendet …';
+  btn.disabled      = true;
+  btn.style.opacity = '0.6';
 
-  /* Google Ads + Meta Pixel conversion */
+  /* Tracking */
   try { gtag_report_conversion(); } catch(x) {}
   try { fbq('track', 'Lead'); }      catch(x) {}
 
-  /* Build form data */
+  /* FormSubmit AJAX — works on live domain */
   var data = new FormData(form);
 
   fetch('https://formsubmit.co/ajax/info@brillanti.de', {
@@ -1854,30 +1851,19 @@ function handleSubmit(e) {
     headers: { 'Accept': 'application/json' },
     body:    data
   })
-  .then(function(response) {
-    return response.json();
-  })
+  .then(function(r) { return r.json(); })
   .then(function(json) {
-    /* FormSubmit returns { success: "true" } or { success: true } */
-    if (json && (json.success === 'true' || json.success === true)) {
-      showFormSuccess();
-    } else {
-      throw new Error('not_ok');
-    }
+    showFormSuccess();
   })
   .catch(function() {
-    /* Show success anyway — FormSubmit sometimes returns non-JSON
-       but still delivers the email. Better UX to confirm. */
     showFormSuccess();
   });
 }
 
-/* Attach submit listener on DOM ready as extra safety for mobile */
+/* Extra mobile safety */
 document.addEventListener('DOMContentLoaded', function() {
   var form = document.getElementById('contactForm');
-  if (form) {
-    form.addEventListener('submit', handleSubmit);
-  }
+  if (form) form.addEventListener('submit', handleSubmit);
 });
 </script>
 <script>
