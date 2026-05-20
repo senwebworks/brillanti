@@ -35,10 +35,6 @@
 <meta name="twitter:description" content="Handgefertigter Custom-Schmuck aus 18k Gold und zertifizierten Diamanten. Namensketten, Verlobungsringe, Grillz — nach deinen Wünschen.">
 <meta name="twitter:image" content="https://d8j0ntlcm91z4.cloudfront.net/user_3Ax2sheVNhNyiTZ0ic3LUtXQwoa/hf_20260519_174608_b26ae014-4818-4e11-b344-27b073b6de90.png">
 <link rel="dns-prefetch" href="https://d8j0ntlcm91z4.cloudfront.net">
-<link rel="preconnect" href="https://d8j0ntlcm91z4.cloudfront.net" crossorigin>
-<link rel="preload" as="image" href="https://d8j0ntlcm91z4.cloudfront.net/user_3Ax2sheVNhNyiTZ0ic3LUtXQwoa/hf_20260519_174600_3e93339d-0642-474a-9287-cb9e2152ce64.png">
-<link rel="preload" as="image" href="https://d8j0ntlcm91z4.cloudfront.net/user_3Ax2sheVNhNyiTZ0ic3LUtXQwoa/hf_20260519_174538_39519759-b674-441f-a26d-6991e4676086.png">
-<link rel="preload" as="image" href="https://d8j0ntlcm91z4.cloudfront.net/user_3Ax2sheVNhNyiTZ0ic3LUtXQwoa/hf_20260519_174608_b26ae014-4818-4e11-b344-27b073b6de90.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
@@ -1045,6 +1041,36 @@ img {
   gtag('js', new Date());
   gtag('config', 'AW-18176205430');
 </script>
+<script>
+// Fix CDN image loading — retry without CORS headers if initial load fails
+(function() {
+  function setupImgFallbacks() {
+    document.querySelectorAll('img[src*="cloudfront.net"]').forEach(function(img) {
+      if (img.complete && img.naturalHeight > 0) return; // already loaded
+      
+      img.addEventListener('error', function() {
+        // Show branded placeholder
+        var parent = this.parentElement;
+        this.style.display = 'none';
+        if (!parent.querySelector('.img-placeholder')) {
+          var ph = document.createElement('div');
+          ph.className = 'img-placeholder';
+          ph.style.cssText = 'width:100%;height:100%;background:linear-gradient(135deg,#f2f0ec 0%,#e8e4de 100%);display:flex;align-items:center;justify-content:center;position:absolute;inset:0;';
+          ph.innerHTML = '<span style="font-family:Cormorant Garamond,serif;font-size:clamp(12px,2vw,18px);letter-spacing:.4em;color:#c8a96e;text-transform:uppercase;text-align:center;padding:16px;">BRILLANTI</span>';
+          parent.style.position = 'relative';
+          parent.appendChild(ph);
+        }
+      }, {once: true});
+    });
+  }
+  
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupImgFallbacks);
+  } else {
+    setupImgFallbacks();
+  }
+})();
+</script>
 </head>
 <body>
 <!-- COOKIE BANNER -->
@@ -1097,7 +1123,7 @@ img {
 <!-- HERO -->
 <section class="hero" id="home">
   <video id="heroVideo" autoplay muted loop playsinline oncanplay="this.classList.add('ready')">
-    <source src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ax2sheVNhNyiTZ0ic3LUtXQwoa/hf_20260515_094955_5664bbe0-ae49-4508-931e-a00580423013.mp4" type="video/mp4">
+    <source src="images/hf_20260515_094955_5664bbe0-ae49-4508-931e-a00580423013.mp4" type="video/mp4">
   </video>
   <canvas id="heroCanvas"></canvas>
   <div class="hero-veil"></div>
@@ -1152,7 +1178,7 @@ img {
     <h2 class="rv d1" style="font-size:clamp(28px,3.5vw,44px);margin-bottom:40px">Unsere Kategorien</h2>
     <div class="cat-grid">
       <div class="cat rv">
-        <img crossorigin="anonymous" src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ax2sheVNhNyiTZ0ic3LUtXQwoa/hf_20260519_174600_3e93339d-0642-474a-9287-cb9e2152ce64.png"
+        <img src="images/hf_20260519_174600_3e93339d-0642-474a-9287-cb9e2152ce64.png"
           alt="Custom Namensketten und Halsketten 18k Gold" loading="eager" fetchpriority="high" onerror="this.style.background='var(--lt)'">
         <div class="cat-overlay">
           <div class="cat-label">Halsketten & Ketten</div>
@@ -1161,7 +1187,7 @@ img {
         </div>
       </div>
       <div class="cat rv d1">
-        <img crossorigin="anonymous" src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ax2sheVNhNyiTZ0ic3LUtXQwoa/hf_20260519_174538_39519759-b674-441f-a26d-6991e4676086.png"
+        <img src="images/hf_20260519_174538_39519759-b674-441f-a26d-6991e4676086.png"
           alt="Custom Verlobungsringe und Ringe 18k Gold" loading="eager" fetchpriority="high" onerror="this.style.background='var(--lt)'">
         <div class="cat-overlay">
           <div class="cat-label">Ringe</div>
@@ -1170,7 +1196,7 @@ img {
         </div>
       </div>
       <div class="cat rv d2">
-        <img crossorigin="anonymous" src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ax2sheVNhNyiTZ0ic3LUtXQwoa/hf_20260519_174608_b26ae014-4818-4e11-b344-27b073b6de90.png"
+        <img src="images/hf_20260519_174608_b26ae014-4818-4e11-b344-27b073b6de90.png"
           alt="Iced Out Statement Pieces und Armbänder" loading="eager" onerror="this.style.background='var(--lt)'">
         <div class="cat-overlay">
           <div class="cat-label">Statement & Iced Out</div>
@@ -1179,7 +1205,7 @@ img {
         </div>
       </div>
       <div class="cat rv d3">
-        <img crossorigin="anonymous" src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ax2sheVNhNyiTZ0ic3LUtXQwoa/hf_20260519_224022_b02406c5-4a73-4858-8a56-c2e732ca6737.png"
+        <img src="images/hf_20260519_224022_b02406c5-4a73-4858-8a56-c2e732ca6737.png"
           alt="Custom Grillz 18k Gold Diamanten" loading="lazy"
           onerror="this.parentElement.style.background='var(--ink2)'">
         <div class="cat-overlay">
@@ -1196,7 +1222,7 @@ img {
 <section class="about" id="about" style="padding:0">
   <div class="about-wrap">
     <div class="about-img rl">
-      <img crossorigin="anonymous" src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ax2sheVNhNyiTZ0ic3LUtXQwoa/hf_20260515_085402_16cb8c3e-3a49-427f-9bca-d7581d8cae7e.png"
+      <img src="images/hf_20260515_085402_16cb8c3e-3a49-427f-9bca-d7581d8cae7e.png"
         alt="BRILLANTI Goldschmied Atelier Handarbeit" loading="lazy"
         onerror="this.style.background='var(--lt)'">
     </div>
@@ -1228,47 +1254,47 @@ img {
     </div>
     <div class="port-grid">
       <div class="pc pc-a">
-        <img crossorigin="anonymous" src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ax2sheVNhNyiTZ0ic3LUtXQwoa/hf_20260519_174600_3e93339d-0642-474a-9287-cb9e2152ce64.png"
+        <img src="images/hf_20260519_174600_3e93339d-0642-474a-9287-cb9e2152ce64.png"
           alt="Layered Necklaces European Woman" loading="lazy" onerror="this.style.display='none'">
         <div class="pc-ov"><div class="pc-txt"><span class="pc-cat">Editorial</span><div class="pc-name">Layered Ketten</div></div></div>
       </div>
       <div class="pc pc-b">
-        <img crossorigin="anonymous" src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ax2sheVNhNyiTZ0ic3LUtXQwoa/hf_20260519_174608_b26ae014-4818-4e11-b344-27b073b6de90.png"
+        <img src="images/hf_20260519_174608_b26ae014-4818-4e11-b344-27b073b6de90.png"
           alt="Fine Jewelry Collection Flatlay" loading="lazy" onerror="this.style.display='none'">
         <div class="pc-ov"><div class="pc-txt"><span class="pc-cat">High Jewelry</span><div class="pc-name">Kollektion</div></div></div>
       </div>
       <div class="pc pc-c">
-        <img crossorigin="anonymous" src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ax2sheVNhNyiTZ0ic3LUtXQwoa/hf_20260519_174546_4b7f4112-c3db-47c4-8c1c-35034bf9318d.png"
+        <img src="images/hf_20260519_174546_4b7f4112-c3db-47c4-8c1c-35034bf9318d.png"
           alt="Diamond Statement Necklace High Jewelry" loading="lazy" onerror="this.style.display='none'">
         <div class="pc-ov"><div class="pc-txt"><span class="pc-cat">Statement</span><div class="pc-name">Diamant-Collier</div></div></div>
       </div>
       <div class="pc pc-d">
-        <img crossorigin="anonymous" src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ax2sheVNhNyiTZ0ic3LUtXQwoa/hf_20260519_174538_39519759-b674-441f-a26d-6991e4676086.png"
+        <img src="images/hf_20260519_174538_39519759-b674-441f-a26d-6991e4676086.png"
           alt="Solitaire Diamond Ring Fine Jewelry" loading="lazy" onerror="this.style.display='none'">
         <div class="pc-ov"><div class="pc-txt"><span class="pc-cat">Fine Jewelry</span><div class="pc-name">Solitär-Ring</div></div></div>
       </div>
       <div class="pc pc-e">
-        <img crossorigin="anonymous" src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ax2sheVNhNyiTZ0ic3LUtXQwoa/hf_20260515_085356_9b8bde74-d2a6-441f-896f-10baf9ed2db1.png"
+        <img src="images/hf_20260515_085356_9b8bde74-d2a6-441f-896f-10baf9ed2db1.png"
           alt="Verlobungsring Finger Diamant" loading="lazy" onerror="this.style.display='none'">
         <div class="pc-ov"><div class="pc-txt"><span class="pc-cat">Verlobung</span><div class="pc-name">Brillant-Solitär</div></div></div>
       </div>
       <div class="pc pc-f">
-        <img crossorigin="anonymous" src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ax2sheVNhNyiTZ0ic3LUtXQwoa/hf_20260515_095011_f743a201-6b79-4da3-842e-6b70629feecf.png"
+        <img src="images/hf_20260515_095011_f743a201-6b79-4da3-842e-6b70629feecf.png"
           alt="Diamond Cross Pendant Statement" loading="lazy" onerror="this.style.display='none'">
         <div class="pc-ov"><div class="pc-txt"><span class="pc-cat">Statement</span><div class="pc-name">Diamond Cross</div></div></div>
       </div>
       <div class="pc pc-g">
-        <img crossorigin="anonymous" src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ax2sheVNhNyiTZ0ic3LUtXQwoa/hf_20260515_095025_fde797ac-1043-4813-ad03-b5d253f91257.png"
+        <img src="images/hf_20260515_095025_fde797ac-1043-4813-ad03-b5d253f91257.png"
           alt="Iced Out Tennis Bracelet Diamonds" loading="lazy" onerror="this.style.display='none'">
         <div class="pc-ov"><div class="pc-txt"><span class="pc-cat">Iced Out</span><div class="pc-name">Tennis Armband</div></div></div>
       </div>
       <div class="pc pc-h">
-        <img crossorigin="anonymous" src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ax2sheVNhNyiTZ0ic3LUtXQwoa/hf_20260515_095046_bab2684f-cdeb-42f7-b600-bc9d53d48c0e.png"
+        <img src="images/hf_20260515_095046_bab2684f-cdeb-42f7-b600-bc9d53d48c0e.png"
           alt="Iced Out Cuban Link Chain" loading="lazy" onerror="this.style.display='none'">
         <div class="pc-ov"><div class="pc-txt"><span class="pc-cat">Cuban Link</span><div class="pc-name">Iced Out Kette</div></div></div>
       </div>
       <div class="pc pc-i">
-        <img crossorigin="anonymous" src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ax2sheVNhNyiTZ0ic3LUtXQwoa/hf_20260519_174553_37fe1f53-a479-440e-91b8-9429a7443d88.png"
+        <img src="images/hf_20260519_174553_37fe1f53-a479-440e-91b8-9429a7443d88.png"
           alt="Signet Ring Diamond Band" loading="lazy" onerror="this.style.display='none'">
         <div class="pc-ov"><div class="pc-txt"><span class="pc-cat">Ringe</span><div class="pc-name">Siegelring &amp; Band</div></div></div>
       </div>
@@ -1276,23 +1302,23 @@ img {
     <!-- Strip -->
     <div class="rail-wrap">
       <div class="rail">
-        <div class="ri"><img crossorigin="anonymous" src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ax2sheVNhNyiTZ0ic3LUtXQwoa/hf_20260515_085349_e13b93d8-7a18-48ac-99a5-5110c54fa765.png" alt="" loading="lazy" onerror="this.style.display='none'"></div>
-        <div class="ri"><img crossorigin="anonymous" src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ax2sheVNhNyiTZ0ic3LUtXQwoa/hf_20260515_085415_c240ea7e-7003-4928-b85a-ca032d3d1389.png" alt="" loading="lazy" onerror="this.style.display='none'"></div>
-        <div class="ri"><img crossorigin="anonymous" src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ax2sheVNhNyiTZ0ic3LUtXQwoa/hf_20260515_092842_6b4fd24e-feef-44f0-9566-e18bd25d8cb5.png" alt="" loading="lazy" onerror="this.style.display='none'"></div>
-        <div class="ri"><img crossorigin="anonymous" src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ax2sheVNhNyiTZ0ic3LUtXQwoa/hf_20260515_095033_bc0a2871-9ed6-422c-9a41-019e8074c540.png" alt="" loading="lazy" onerror="this.style.display='none'"></div>
-        <div class="ri"><img crossorigin="anonymous" src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ax2sheVNhNyiTZ0ic3LUtXQwoa/hf_20260515_095053_9df1d71b-686f-4baa-a776-c6b3caa7b6b0.png" alt="" loading="lazy" onerror="this.style.display='none'"></div>
-        <div class="ri"><img crossorigin="anonymous" src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ax2sheVNhNyiTZ0ic3LUtXQwoa/hf_20260515_085422_96c6a177-ce9c-4741-b4f7-a4d0f485298a.png" alt="" loading="lazy" onerror="this.style.display='none'"></div>
-        <div class="ri"><img crossorigin="anonymous" src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ax2sheVNhNyiTZ0ic3LUtXQwoa/hf_20260515_095018_8549bef6-cac3-4107-979f-59d53356d8bf.png" alt="" loading="lazy" onerror="this.style.display='none'"></div>
-        <div class="ri"><img crossorigin="anonymous" src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ax2sheVNhNyiTZ0ic3LUtXQwoa/hf_20260515_093911_faf15d49-c015-41af-833f-ea93ad12e108.png" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="ri"><img src="images/hf_20260515_085349_e13b93d8-7a18-48ac-99a5-5110c54fa765.png" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="ri"><img src="images/hf_20260515_085415_c240ea7e-7003-4928-b85a-ca032d3d1389.png" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="ri"><img src="images/hf_20260515_092842_6b4fd24e-feef-44f0-9566-e18bd25d8cb5.png" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="ri"><img src="images/hf_20260515_095033_bc0a2871-9ed6-422c-9a41-019e8074c540.png" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="ri"><img src="images/hf_20260515_095053_9df1d71b-686f-4baa-a776-c6b3caa7b6b0.png" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="ri"><img src="images/hf_20260515_085422_96c6a177-ce9c-4741-b4f7-a4d0f485298a.png" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="ri"><img src="images/hf_20260515_095018_8549bef6-cac3-4107-979f-59d53356d8bf.png" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="ri"><img src="images/hf_20260515_093911_faf15d49-c015-41af-833f-ea93ad12e108.png" alt="" loading="lazy" onerror="this.style.display='none'"></div>
         <!-- duplicate -->
-        <div class="ri"><img crossorigin="anonymous" src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ax2sheVNhNyiTZ0ic3LUtXQwoa/hf_20260515_085349_e13b93d8-7a18-48ac-99a5-5110c54fa765.png" alt="" loading="lazy" onerror="this.style.display='none'"></div>
-        <div class="ri"><img crossorigin="anonymous" src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ax2sheVNhNyiTZ0ic3LUtXQwoa/hf_20260515_092842_6b4fd24e-feef-44f0-9566-e18bd25d8cb5.png" alt="" loading="lazy" onerror="this.style.display='none'"></div>
-        <div class="ri"><img crossorigin="anonymous" src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ax2sheVNhNyiTZ0ic3LUtXQwoa/hf_20260515_095033_bc0a2871-9ed6-422c-9a41-019e8074c540.png" alt="" loading="lazy" onerror="this.style.display='none'"></div>
-        <div class="ri"><img crossorigin="anonymous" src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ax2sheVNhNyiTZ0ic3LUtXQwoa/hf_20260515_095053_9df1d71b-686f-4baa-a776-c6b3caa7b6b0.png" alt="" loading="lazy" onerror="this.style.display='none'"></div>
-        <div class="ri"><img crossorigin="anonymous" src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ax2sheVNhNyiTZ0ic3LUtXQwoa/hf_20260515_085422_96c6a177-ce9c-4741-b4f7-a4d0f485298a.png" alt="" loading="lazy" onerror="this.style.display='none'"></div>
-        <div class="ri"><img crossorigin="anonymous" src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ax2sheVNhNyiTZ0ic3LUtXQwoa/hf_20260515_095018_8549bef6-cac3-4107-979f-59d53356d8bf.png" alt="" loading="lazy" onerror="this.style.display='none'"></div>
-        <div class="ri"><img crossorigin="anonymous" src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ax2sheVNhNyiTZ0ic3LUtXQwoa/hf_20260515_093911_faf15d49-c015-41af-833f-ea93ad12e108.png" alt="" loading="lazy" onerror="this.style.display='none'"></div>
-        <div class="ri"><img crossorigin="anonymous" src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ax2sheVNhNyiTZ0ic3LUtXQwoa/hf_20260515_085415_c240ea7e-7003-4928-b85a-ca032d3d1389.png" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="ri"><img src="images/hf_20260515_085349_e13b93d8-7a18-48ac-99a5-5110c54fa765.png" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="ri"><img src="images/hf_20260515_092842_6b4fd24e-feef-44f0-9566-e18bd25d8cb5.png" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="ri"><img src="images/hf_20260515_095033_bc0a2871-9ed6-422c-9a41-019e8074c540.png" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="ri"><img src="images/hf_20260515_095053_9df1d71b-686f-4baa-a776-c6b3caa7b6b0.png" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="ri"><img src="images/hf_20260515_085422_96c6a177-ce9c-4741-b4f7-a4d0f485298a.png" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="ri"><img src="images/hf_20260515_095018_8549bef6-cac3-4107-979f-59d53356d8bf.png" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="ri"><img src="images/hf_20260515_093911_faf15d49-c015-41af-833f-ea93ad12e108.png" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="ri"><img src="images/hf_20260515_085415_c240ea7e-7003-4928-b85a-ca032d3d1389.png" alt="" loading="lazy" onerror="this.style.display='none'"></div>
       </div>
     </div>
     <div style="text-align:center;margin-top:48px">
@@ -1304,7 +1330,7 @@ img {
 <!-- VIDEO SHOWCASE — Armband Video -->
 <div class="video-section">
   <video class="vid-bg" autoplay muted loop playsinline>
-    <source src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ax2sheVNhNyiTZ0ic3LUtXQwoa/hf_20260519_224044_c69392a0-e261-433c-a60a-2bec3ffd5a36.mp4" type="video/mp4">
+    <source src="images/hf_20260519_224044_c69392a0-e261-433c-a60a-2bec3ffd5a36.mp4" type="video/mp4">
   </video>
   <div class="vid-veil"></div>
   <div class="vid-content rv">
@@ -1335,7 +1361,7 @@ img {
     <div class="rings-grid">
       <div class="ring-card rv">
         <div class="ring-img">
-          <img crossorigin="anonymous" src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ax2sheVNhNyiTZ0ic3LUtXQwoa/hf_20260519_224029_92f85abb-3044-435a-a33d-f2d1865b53fd.png"
+          <img src="images/hf_20260519_224029_92f85abb-3044-435a-a33d-f2d1865b53fd.png"
             alt="East West Verlobungsring Oval Diamant Rosegold" loading="lazy"
             onerror="this.style.display='none';this.parentElement.style.background='var(--lt)'">
         </div>
@@ -1347,7 +1373,7 @@ img {
       </div>
       <div class="ring-card rv d1">
         <div class="ring-img">
-          <img crossorigin="anonymous" src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ax2sheVNhNyiTZ0ic3LUtXQwoa/hf_20260519_224035_cf0b4853-193d-4cd4-a652-f36e6d551aee.png"
+          <img src="images/hf_20260519_224035_cf0b4853-193d-4cd4-a652-f36e6d551aee.png"
             alt="Verlobungsringe Solitär Emerald Cut Halo" loading="lazy"
             onerror="this.style.display='none';this.parentElement.style.background='var(--lt)'">
         </div>
@@ -1359,7 +1385,7 @@ img {
       </div>
       <div class="ring-card rv d2">
         <div class="ring-img">
-          <img crossorigin="anonymous" src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ax2sheVNhNyiTZ0ic3LUtXQwoa/hf_20260519_174538_39519759-b674-441f-a26d-6991e4676086.png"
+          <img src="images/hf_20260519_174538_39519759-b674-441f-a26d-6991e4676086.png"
             alt="Solitär Verlobungsring Brillant" loading="lazy"
             onerror="this.style.display='none';this.parentElement.style.background='var(--lt)'">
         </div>
@@ -1380,7 +1406,7 @@ img {
 <section class="grillz" id="grillz" style="padding:0">
   <div class="grillz-grid">
     <div class="grillz-img rl">
-      <img crossorigin="anonymous" src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ax2sheVNhNyiTZ0ic3LUtXQwoa/hf_20260519_224022_b02406c5-4a73-4858-8a56-c2e732ca6737.png"
+      <img src="images/hf_20260519_224022_b02406c5-4a73-4858-8a56-c2e732ca6737.png"
         alt="Custom Grillz 18k Gold Pavé Diamanten" loading="lazy"
         onerror="this.style.background='var(--ink)'">
     </div>
@@ -1566,7 +1592,7 @@ img {
       </div>
       <div class="rr">
         <div class="faq-img">
-          <img crossorigin="anonymous" src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ax2sheVNhNyiTZ0ic3LUtXQwoa/hf_20260515_095003_fd084882-9d6c-4273-8532-01e2867cd80b.png"
+          <img src="images/hf_20260515_095003_fd084882-9d6c-4273-8532-01e2867cd80b.png"
             alt="BRILLANTI Luxus Schmuckbox" loading="lazy"
             onerror="this.style.display='none'">
         </div>
