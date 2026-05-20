@@ -1024,15 +1024,9 @@ img {
 
 </style>
 <!--
-  ═══════════════════════════════════════════════════════
-  FORMULAR — FormSubmit.co (kein Account, kein Setup)
-
-  EINMALIGE AKTIVIERUNG (nur beim ersten Absenden):
-  1. Jemand schickt die erste Anfrage über das Formular
-  2. FormSubmit sendet eine Bestätigungsmail an info@brillanti.de
-  3. Den Link in dieser Mail einmal anklicken — fertig
-  Ab dann kommen alle Anfragen direkt ins Postfach.
-  ═══════════════════════════════════════════════════════
+  FORMULAR — Web3Forms
+  Access Key: 587a94df-fd65-426b-9b91-6348e76803bb
+  Ziel: info@brillanti.de
 -->
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18176205430"></script>
@@ -1549,11 +1543,12 @@ src="https://www.facebook.com/tr?id=1619563002636257&ev=PageView&noscript=1"
           <div class="c-item"><div class="c-ico">✦</div><div><div class="c-lb">Beratung</div><div class="c-vl">Kostenlos · Unverbindlich · Persönlich</div></div></div>
         </div>
       </div>
-      <form class="form rr" id="contactForm" action="https://formsubmit.co/info@brillanti.de" method="POST" onsubmit="handleSubmit(event)" novalidate>
-        <input type="hidden" name="_subject" value="Kostenloses Angebot Anfrage — brillanti.de">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_replyto" id="_replyto">
+      <form class="form rr" id="contactForm" action="https://api.web3forms.com/submit" method="POST" onsubmit="handleSubmit(event)" novalidate>
+        <input type="hidden" name="access_key" value="587a94df-fd65-426b-9b91-6348e76803bb">
+        <input type="hidden" name="subject" value="Kostenloses Angebot Anfrage — brillanti.de">
+        <input type="hidden" name="from_name" value="BRILLANTI Website">
+        <input type="hidden" name="redirect" value="false">
+        <input type="hidden" name="replyto" id="_replyto">
         <div class="f-row">
           <div class="fg"><label class="fl" for="fn">Vorname *</label><input type="text" id="fn" name="Vorname" class="fi" placeholder="Mia" required autocomplete="given-name"></div>
           <div class="fg"><label class="fl" for="ln">Nachname *</label><input type="text" id="ln" name="Nachname" class="fi" placeholder="Müller" required autocomplete="family-name"></div>
@@ -1843,10 +1838,9 @@ function handleSubmit(e) {
   try { gtag_report_conversion(); } catch(x) {}
   try { fbq('track', 'Lead'); }      catch(x) {}
 
-  /* FormSubmit AJAX — works on live domain */
   var data = new FormData(form);
 
-  fetch('https://formsubmit.co/ajax/info@brillanti.de', {
+  fetch('https://api.web3forms.com/submit', {
     method:  'POST',
     headers: { 'Accept': 'application/json' },
     body:    data
