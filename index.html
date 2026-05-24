@@ -1188,8 +1188,8 @@ src="https://www.facebook.com/tr?id=1619563002636257&ev=PageView&noscript=1"
   <a href="#contact" class="mna" onclick="closeMob()">Kontakt</a>
   <a href="#contact" class="mna mna-cta" onclick="closeMob()">Anfragen</a>
   <div class="mob-lang">
-    <button class="lang-btn active" onclick="setLang('de')" id="mobBtnDe">DE</button>
-    <button class="lang-btn" onclick="setLang('en')" id="mobBtnEn">EN</button>
+    <span class="lang-btn active">DE</span>
+    <a href="/en/" class="lang-btn" style="text-decoration:none;">EN</a>
   </div>
 </div>
 
@@ -1206,8 +1206,8 @@ src="https://www.facebook.com/tr?id=1619563002636257&ev=PageView&noscript=1"
     <a href="#contact" class="na">Kontakt</a>
     <a href="#contact" class="n-cta">Anfragen</a>
     <div class="lang-sw" id="langSw">
-      <button class="lang-btn active" onclick="setLang('de')" id="btnDe">DE</button>
-      <button class="lang-btn" onclick="setLang('en')" id="btnEn">EN</button>
+      <span class="lang-btn active">DE</span>
+      <a href="/en/" class="lang-btn" style="text-decoration:none;">EN</a>
     </div>
     <button class="mob-btn" id="mobBtn" onclick="toggleMob()" aria-label="Menü">
       <span></span><span></span><span></span>
@@ -1994,70 +1994,12 @@ if ('IntersectionObserver' in window) {
   </svg>
 </a>
 <script>
-/* ── LANGUAGE SWITCHER ── */
-var LANG_T = {
-  de: {
-    nav0:'Portfolio', nav1:'Prozess', nav2:'Bewertungen', nav3:'FAQ', nav4:'Kontakt', nav5:'Anfragen',
-    hk:'18k Gold · Zertifizierte Diamanten · Handgefertigt',
-    hs:'Handgefertigt. Einmalig. Deins.',
-    hc1:'Jetzt anfragen', hc2:'Portfolio entdecken',
-    waT:'Schreib uns auf WhatsApp'
-  },
-  en: {
-    nav0:'Portfolio', nav1:'Process', nav2:'Reviews', nav3:'FAQ', nav4:'Contact', nav5:'Request',
-    hk:'18k Gold · Certified Diamonds · Handcrafted',
-    hs:'Handcrafted. One of a Kind. Yours.',
-    hc1:'Request now', hc2:'Discover portfolio',
-    waT:'Chat with us on WhatsApp'
-  }
-};
-
 function setLang(lang) {
-  var t = LANG_T[lang];
-  if (!t) return;
-  document.documentElement.lang = lang;
-
-  var na = document.querySelectorAll('.na');
-  if (na[0]) na[0].textContent = t.nav0;
-  if (na[1]) na[1].textContent = t.nav1;
-  if (na[2]) na[2].textContent = t.nav2;
-  if (na[3]) na[3].textContent = t.nav3;
-  if (na[4]) na[4].textContent = t.nav4;
-  var nc = document.querySelector('.n-cta');
-  if (nc) nc.textContent = t.nav5;
-
-  var mn = document.querySelectorAll('.mna');
-  if (mn[0]) mn[0].textContent = t.nav0;
-  if (mn[1]) mn[1].textContent = t.nav1;
-  if (mn[2]) mn[2].textContent = t.nav2;
-  if (mn[3]) mn[3].textContent = t.nav3;
-  if (mn[4]) mn[4].textContent = t.nav4;
-  if (mn[5]) mn[5].textContent = t.nav5;
-
-  var hk = document.querySelector('.hero-kicker');
-  if (hk) hk.textContent = t.hk;
-  var hs = document.querySelector('.hero-sub');
-  if (hs) hs.textContent = t.hs;
-  var hc1 = document.querySelector('.btn-hero-prim');
-  if (hc1) hc1.textContent = t.hc1;
-  var hc2 = document.querySelector('.btn-hero-ghost');
-  if (hc2) hc2.textContent = t.hc2;
-  var wt = document.querySelector('.wa-tooltip');
-  if (wt) wt.textContent = t.waT;
-
-  ['btnDe','btnEn','mobBtnDe','mobBtnEn'].forEach(function(id) {
-    var el = document.getElementById(id);
-    if (!el) return;
-    var active = (id.indexOf('De') > -1) ? lang === 'de' : lang === 'en';
-    el.classList.toggle('active', active);
-  });
-  try { localStorage.setItem('brillanti_lang', lang); } catch(e) {}
+  if (lang === 'en') {
+    window.location.href = '/en/';
+  }
+  // already on DE, do nothing
 }
-
-(function() {
-  try { var s = localStorage.getItem('brillanti_lang'); if (s && s !== 'de') setLang(s); } catch(e) {}
-})();
-
 </script>
 </body>
 </html>

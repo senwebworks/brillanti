@@ -185,6 +185,12 @@ footer{background:var(--cartier-dk);padding:52px 52px 32px;color:var(--white)}
   .formular-box .f-line span{min-width:unset}
 }
 @media(max-width:480px){.ft{grid-template-columns:1fr}}
+
+/* ── LANG SWITCHER ── */
+.lang-sw{display:flex;align-items:center;gap:2px;border:1px solid var(--bd2);overflow:hidden;flex-shrink:0}
+.lang-btn{font-family:var(--body)!important;font-size:10px!important;font-weight:400!important;letter-spacing:.12em!important;text-transform:uppercase;padding:7px 10px;background:none;border:none;cursor:pointer;color:var(--ink4);transition:all .2s;line-height:1;display:inline-block;text-decoration:none}
+.lang-btn.active{background:var(--cartier);color:var(--white)!important;pointer-events:none}
+.lang-btn:not(.active):hover{color:var(--cartier)}
 </style>
 </head>
 <body>
@@ -192,7 +198,8 @@ footer{background:var(--cartier-dk);padding:52px 52px 32px;color:var(--white)}
 <nav>
   <a href="index.html" class="back-link">Zur Website</a>
   <a href="index.html" class="nav-logo">BRILLANTI</a>
-  <a href="index.html#contact" class="nav-cta">Anfragen</a>
+  <div class="lang-sw"><span class="lang-btn active">DE</span><a href="/en/widerruf.html" class="lang-btn">EN</a></div>
+<a href="index.html#contact" class="nav-cta">Anfragen</a>
 </nav>
 
 <div class="page-wrap">
