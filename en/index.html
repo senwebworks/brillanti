@@ -21,8 +21,7 @@
 "telephone":"+4915679095578",
 "email":"info@brillanti.de",
 "priceRange":"€€€",
-"address":{"@type":"PostalAddress","streetAddress":"Hildastraße 21","addressLocality":"Haßmersheim","postalCode":"74855","addressCountry":"DE"},
-"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"347"}}
+"address":{"@type":"PostalAddress","streetAddress":"Hildastraße 21","addressLocality":"Haßmersheim","postalCode":"74855","addressCountry":"DE"}}
 </script>
 <link rel="icon" type="image/svg+xml" href="../brillanti-favicon.svg">
 <link rel="shortcut icon" href="../brillanti-favicon.svg">
@@ -883,6 +882,69 @@ img {
 
   /* Video section */
   .video-section { min-height:380px; }
+}
+
+/* ═══════════════════════════════════════════
+   HIP UPGRADE LAYER — bolder type, motion, rhythm
+   Editorial energy in white + #8B1A1A, Vogue serif
+   ═══════════════════════════════════════════ */
+
+/* 1 — BIGGER, BOLDER EDITORIAL TYPE */
+.editorial h2 { font-size: clamp(40px,6.5vw,92px) !important; line-height: .98 !important; letter-spacing: -0.01em; }
+.categories h2, .port-head h2, .proc-intro h2,
+.about-body h2 { font-size: clamp(38px,5.5vw,78px) !important; line-height: 1 !important; letter-spacing: -0.01em; }
+.reviews .rev-head h2 { font-size: clamp(38px,5.5vw,72px) !important; line-height: 1 !important; }
+.vid-content h2, .grillz-body h2, .contact-body h2 { font-size: clamp(34px,4.6vw,64px) !important; line-height: 1.02 !important; }
+
+/* More air around the big headings */
+.sec-label { font-size: 11px !important; letter-spacing: .46em !important; margin-bottom: 26px; }
+.editorial { padding: 120px 52px !important; }
+.categories, .portfolio, .process { padding-top: 100px; padding-bottom: 100px; }
+
+/* 2 — DEEP-RED EDITORIAL FEATURE BLOCK */
+.editorial.feature-red {
+  background: var(--cartier) !important;
+  border-bottom: none !important;
+}
+.editorial.feature-red .sec-label { color: rgba(255,255,255,.7) !important; }
+.editorial.feature-red .sec-label::before { background: rgba(255,255,255,.5) !important; }
+.editorial.feature-red h2 { color: var(--white) !important; }
+.editorial.feature-red p { color: rgba(255,255,255,.82) !important; }
+.editorial.feature-red .btn-red {
+  background: var(--white) !important; color: var(--cartier) !important;
+}
+.editorial.feature-red .btn-red:hover { background: var(--cream) !important; transform: translateY(-2px); }
+
+/* 3 — SCROLL MOTION: parallax scale on imagery */
+.scale-rise { overflow: hidden; }
+.scale-rise > img,
+.cat > img, .pc > img {
+  transition: transform 1.4s var(--ease-out);
+  will-change: transform;
+}
+.cat:hover > img, .pc:hover > img { transform: scale(1.06); }
+.kenburns { animation: kenburns 18s ease-in-out infinite alternate; }
+@keyframes kenburns { from { transform: scale(1); } to { transform: scale(1.08); } }
+
+/* Reveal: stronger, more cinematic stagger */
+.rv { opacity: 0; transform: translateY(38px); transition: opacity 1s var(--ease-out), transform 1.1s var(--ease-out); }
+.rv.in { opacity: 1; transform: none; }
+.rv.d1 { transition-delay: .12s; } .rv.d2 { transition-delay: .24s; } .rv.d3 { transition-delay: .36s; }
+
+/* 4 — EDITORIAL DIVIDER (thin line + diamond) */
+.ed-divider { display:flex; align-items:center; justify-content:center; gap:18px; padding: 8px 0 4px; }
+.ed-divider::before, .ed-divider::after { content:''; height:1px; width:min(120px,18vw); background: var(--bd2); }
+.ed-divider span { color: var(--cartier); font-size: 12px; transform: rotate(45deg); }
+
+/* 5 — HERO: a touch grander */
+.hero-h1 { font-size: clamp(64px,11vw,150px) !important; letter-spacing: .05em !important; }
+.hero-kicker { font-size: 11px !important; letter-spacing: .6em !important; }
+
+@media (max-width:768px){
+  .editorial { padding: 72px 24px !important; }
+  .editorial h2 { font-size: clamp(34px,9vw,52px) !important; }
+  .categories h2, .port-head h2, .proc-intro h2, .about-body h2 { font-size: clamp(32px,8vw,46px) !important; }
+  .ed-divider::before, .ed-divider::after { width: 60px; }
   .vid-content { padding:52px 20px; }
 
   /* Process */
@@ -1245,7 +1307,7 @@ src="https://www.facebook.com/tr?id=1619563002636257&ev=PageView&noscript=1"
     <div class="t-item"><span>GIA & IGI zertifizierte Diamanten</span><span class="t-dot"></span></div>
     <div class="t-item"><span>Name Necklaces · Rings · Bracelets</span><span class="t-dot"></span></div>
     <div class="t-item"><span>Custom grillz</span><span class="t-dot"></span></div>
-    <div class="t-item"><span>Handcrafted in our Atelier</span><span class="t-dot"></span></div>
+    <div class="t-item"><span>Handcrafted to order</span><span class="t-dot"></span></div>
     <div class="t-item"><span>Lifetime Guarantee</span><span class="t-dot"></span></div>
     <div class="t-item"><span>Free Consultation</span><span class="t-dot"></span></div>
     <div class="t-item"><span>Engagement Rings · Custom Design</span><span class="t-dot"></span></div>
@@ -1253,7 +1315,7 @@ src="https://www.facebook.com/tr?id=1619563002636257&ev=PageView&noscript=1"
     <div class="t-item"><span>GIA & IGI zertifizierte Diamanten</span><span class="t-dot"></span></div>
     <div class="t-item"><span>Name Necklaces · Rings · Bracelets</span><span class="t-dot"></span></div>
     <div class="t-item"><span>Custom grillz</span><span class="t-dot"></span></div>
-    <div class="t-item"><span>Handcrafted in our Atelier</span><span class="t-dot"></span></div>
+    <div class="t-item"><span>Handcrafted to order</span><span class="t-dot"></span></div>
     <div class="t-item"><span>Lifetime Guarantee</span><span class="t-dot"></span></div>
     <div class="t-item"><span>Free Consultation</span><span class="t-dot"></span></div>
     <div class="t-item"><span>Engagement Rings · Custom Design</span><span class="t-dot"></span></div>
@@ -1261,14 +1323,16 @@ src="https://www.facebook.com/tr?id=1619563002636257&ev=PageView&noscript=1"
 </div>
 
 <!-- EDITORIAL OPENER -->
-<div class="editorial">
+<div class="editorial feature-red">
   <div class="ct">
     <div class="sec-label rv" style="justify-content:center">Custom Jewelry Atelier</div>
-    <h2 class="rv d1" style="font-size:clamp(28px,3.5vw,44px)">Every piece carries your name.<br>And only yours.</h2>
-    <p class="rv d2">You bring the idea. We bring the craft. Whether name necklace, engagement ring, statement piece or custom grillz — at BRILLANTI no two pieces are alike.</p>
+    <h2 class="rv d1">Every piece carries<br>your name. Only yours.</h2>
+    <p class="rv d2" style="max-width:600px;margin:0 auto 36px">You bring the idea. We bring the craft. Whether name necklace, engagement ring, statement piece or custom grillz — at BRILLANTI no two pieces are alike.</p>
     <a href="#contact" class="btn-red rv d3">Start free consultation</a>
   </div>
 </div>
+
+<div class="ed-divider"><span>◆</span></div>
 
 <!-- CATEGORIES -->
 <section class="categories">
@@ -1333,8 +1397,8 @@ src="https://www.facebook.com/tr?id=1619563002636257&ev=PageView&noscript=1"
       <p>From the simple name necklace to the engagement ring, from the signet ring to the grillz — we create what others decline.</p>
       <p>18k Gold. Certified diamonds. Every piece by hand.</p>
       <div class="stat-row">
-        <div><div class="stat-n">12k+</div><div class="stat-l">Pieces crafted</div></div>
-        <div><div class="stat-n">4.9</div><div class="stat-l">Avg. rating</div></div>
+        <div><div class="stat-n">100%</div><div class="stat-l">Made to order</div></div>
+        <div><div class="stat-n">18k</div><div class="stat-l">Solid gold</div></div>
         <div><div class="stat-n">∞</div><div class="stat-l">Lifetime Guarantee</div></div>
       </div>
     </div>
@@ -1346,8 +1410,11 @@ src="https://www.facebook.com/tr?id=1619563002636257&ev=PageView&noscript=1"
   <div class="ct">
     <div class="port-head">
       <div>
-        <div class="sec-label rv">Portfolio</div>
-        <h2 class="rv d1">Our Creations.</h2>
+        <div class="sec-label rv">Design Concepts</div>
+        <h2 class="rv d1">How yours could look.</h2>
+        <p class="rv d2" style="margin-top:14px;max-width:560px;line-height:1.7;color:var(--ink-soft,#5a5550);font-size:15px">
+          These are design visualizations — inspiration for what we can create for you. Every BRILLANTI piece is made to order, so your piece is designed around your idea, not picked off a shelf.
+        </p>
       </div>
       <a href="#contact" class="btn-outline rv d2">Request your piece</a>
     </div>
@@ -1355,47 +1422,47 @@ src="https://www.facebook.com/tr?id=1619563002636257&ev=PageView&noscript=1"
       <div class="pc pc-a">
         <img src="../images/hf_20260519_174600_3e93339d-0642-474a-9287-cb9e2152ce64.png"
           alt="Layered Necklaces European Woman" loading="lazy" onerror="this.style.display='none'">
-        <div class="pc-ov"><div class="pc-txt"><span class="pc-cat">Editorial</span><div class="pc-name">Layered Necklaces</div></div></div>
+        <div class="pc-ov"><div class="pc-txt"><span class="pc-cat">Concept</span><div class="pc-name">Layered Necklaces</div></div></div>
       </div>
       <div class="pc pc-b">
         <img src="../images/hf_20260519_174608_b26ae014-4818-4e11-b344-27b073b6de90.png"
           alt="Fine Jewelry Collection Flatlay" loading="lazy" onerror="this.style.display='none'">
-        <div class="pc-ov"><div class="pc-txt"><span class="pc-cat">High Jewelry</span><div class="pc-name">Collection</div></div></div>
+        <div class="pc-ov"><div class="pc-txt"><span class="pc-cat">Concept</span><div class="pc-name">Fine Jewelry</div></div></div>
       </div>
       <div class="pc pc-c">
         <img src="../images/hf_20260519_174546_4b7f4112-c3db-47c4-8c1c-35034bf9318d.png"
           alt="Diamond Statement Necklace High Jewelry" loading="lazy" onerror="this.style.display='none'">
-        <div class="pc-ov"><div class="pc-txt"><span class="pc-cat">Statement</span><div class="pc-name">Diamond Necklace</div></div></div>
+        <div class="pc-ov"><div class="pc-txt"><span class="pc-cat">Concept</span><div class="pc-name">Diamond Necklace</div></div></div>
       </div>
       <div class="pc pc-d">
         <img src="../images/hf_20260519_174538_39519759-b674-441f-a26d-6991e4676086.png"
           alt="Solitaire Diamond Ring Fine Jewelry" loading="lazy" onerror="this.style.display='none'">
-        <div class="pc-ov"><div class="pc-txt"><span class="pc-cat">Fine Jewelry</span><div class="pc-name">Solitaire Ring</div></div></div>
+        <div class="pc-ov"><div class="pc-txt"><span class="pc-cat">Concept</span><div class="pc-name">Solitaire Ring</div></div></div>
       </div>
       <div class="pc pc-e">
         <img src="../images/hf_20260515_085356_9b8bde74-d2a6-441f-896f-10baf9ed2db1.png"
           alt="Verlobungsring Finger Diamant" loading="lazy" onerror="this.style.display='none'">
-        <div class="pc-ov"><div class="pc-txt"><span class="pc-cat">Engagement</span><div class="pc-name">Brilliant Solitaire</div></div></div>
+        <div class="pc-ov"><div class="pc-txt"><span class="pc-cat">Concept</span><div class="pc-name">Brilliant Solitaire</div></div></div>
       </div>
       <div class="pc pc-f">
         <img src="../images/hf_20260515_095011_f743a201-6b79-4da3-842e-6b70629feecf.png"
           alt="Diamond Cross Pendant Statement" loading="lazy" onerror="this.style.display='none'">
-        <div class="pc-ov"><div class="pc-txt"><span class="pc-cat">Statement</span><div class="pc-name">Diamond Cross</div></div></div>
+        <div class="pc-ov"><div class="pc-txt"><span class="pc-cat">Concept</span><div class="pc-name">Diamond Cross</div></div></div>
       </div>
       <div class="pc pc-g">
         <img src="../images/hf_20260515_095025_fde797ac-1043-4813-ad03-b5d253f91257.png"
           alt="Iced Out Tennis Bracelet Diamonds" loading="lazy" onerror="this.style.display='none'">
-        <div class="pc-ov"><div class="pc-txt"><span class="pc-cat">Iced Out</span><div class="pc-name">Tennis Bracelet</div></div></div>
+        <div class="pc-ov"><div class="pc-txt"><span class="pc-cat">Concept</span><div class="pc-name">Tennis Bracelet</div></div></div>
       </div>
       <div class="pc pc-h">
         <img src="../images/hf_20260515_095046_bab2684f-cdeb-42f7-b600-bc9d53d48c0e.png"
           alt="Iced Out Cuban Link Chain" loading="lazy" onerror="this.style.display='none'">
-        <div class="pc-ov"><div class="pc-txt"><span class="pc-cat">Cuban Link</span><div class="pc-name">Iced Out Chain</div></div></div>
+        <div class="pc-ov"><div class="pc-txt"><span class="pc-cat">Concept</span><div class="pc-name">Cuban Link</div></div></div>
       </div>
       <div class="pc pc-i">
         <img src="../images/hf_20260519_174553_37fe1f53-a479-440e-91b8-9429a7443d88.png"
           alt="Signet Ring Diamond Band" loading="lazy" onerror="this.style.display='none'">
-        <div class="pc-ov"><div class="pc-txt"><span class="pc-cat">Ringe</span><div class="pc-name">Signet Ring &amp; Band</div></div></div>
+        <div class="pc-ov"><div class="pc-txt"><span class="pc-cat">Concept</span><div class="pc-name">Signet Ring &amp; Band</div></div></div>
       </div>
     </div>
     <!-- Strip -->
@@ -1443,9 +1510,9 @@ src="https://www.facebook.com/tr?id=1619563002636257&ev=PageView&noscript=1"
 <div class="stats-bar">
   <div class="ct" style="padding:0">
     <div class="stats-grid">
-      <div class="sb rv"><div class="sb-n">12k+</div><div class="sb-l">Pieces crafted</div></div>
-      <div class="sb rv d1"><div class="sb-n">4.9</div><div class="sb-l">Avg. rating</div></div>
-      <div class="sb rv d2"><div class="sb-n">6+</div><div class="sb-l">Years Atelier</div></div>
+      <div class="sb rv"><div class="sb-n">100%</div><div class="sb-l">Made to order</div></div>
+      <div class="sb rv d1"><div class="sb-n">18k</div><div class="sb-l">Solid gold</div></div>
+      <div class="sb rv d2"><div class="sb-n">GIA</div><div class="sb-l">/ IGI certified</div></div>
       <div class="sb rv d3"><div class="sb-n">∞</div><div class="sb-l">Lifetime Guarantee</div></div>
     </div>
   </div>
@@ -1593,23 +1660,19 @@ src="https://www.facebook.com/tr?id=1619563002636257&ev=PageView&noscript=1"
 <section class="reviews" id="reviews">
   <div class="ct">
     <div class="rev-head">
-      <div class="sec-label rv" style="justify-content:center">Testimonials</div>
-      <h2 class="rv d1" style="font-size:clamp(28px,3.5vw,44px)">What customers say.</h2>
-      <div class="rev-score rv d2">
-        <div class="rev-big">4.9</div>
-        <div><div class="rev-stars">★★★★★</div><div class="rev-cnt">347 verified reviews</div></div>
-      </div>
+      <div class="sec-label rv" style="justify-content:center">Founding Clients</div>
+      <h2 class="rv d1" style="font-size:clamp(28px,3.5vw,44px)">Be among our first.</h2>
+      <p class="rv d2" style="max-width:620px;margin:18px auto 0;text-align:center;line-height:1.7;color:var(--ink-soft,#5a5550)">
+        BRILLANTI is a young atelier. That means every client right now is a founding client — and gets our full, personal attention from the first message to the finished piece. No call center, no queue. You work directly with the person who designs your piece.
+      </p>
     </div>
-    <div class="rev-grid">
-      <div class="rc rv"><div class="rc-s">★★★★★</div><div class="rc-q">"</div><p class="rc-t">The name necklace for my daughter — she cried with joy. The quality is on another level. BRILLANTI is the only atelier I trust with my most precious memories.</p><div class="rc-au"><div class="rc-av">ML</div><div><div class="rc-nm">Marie L.</div><div class="rc-lo">München · Verifiziert</div></div></div></div>
-      <div class="rc rv d1"><div class="rc-s">★★★★★</div><div class="rc-q">"</div><p class="rc-t">We chose an engagement ring with a lab diamond — identical brilliance, but far more carats for the same budget. The GIA certificate resolved all doubts. Absolutely thrilled.</p><div class="rc-au"><div class="rc-av">JK</div><div><div class="rc-nm">Jonas K.</div><div class="rc-lo">Berlin · Verifiziert</div></div></div></div>
-      <div class="rc rv d2"><div class="rc-s">★★★★★</div><div class="rc-q">"</div><p class="rc-t">My custom grillz are absolutely insane. Everyone asks about them. The fit is perfect, the diamonds flash incredibly. The team executed everything exactly as I wanted.</p><div class="rc-au"><div class="rc-av">DM</div><div><div class="rc-nm">David M.</div><div class="rc-lo">Frankfurt · Verifiziert · Custom grillz</div></div></div></div>
-      <div class="rc rv"><div class="rc-s">★★★★★</div><div class="rc-q">"</div><p class="rc-t">I gifted myself the east-west ring. A dream. The quality of the craftsmanship is at the absolute highest level. BRILLANTI does exactly what other jewelers cannot.</p><div class="rc-au"><div class="rc-av">SK</div><div><div class="rc-nm">Sarah K.</div><div class="rc-lo">Wien · Verifiziert</div></div></div></div>
-      <div class="rc rv d1"><div class="rc-s">★★★★★</div><div class="rc-q">"</div><p class="rc-t">The couple rings for our anniversary — we wear them every day. The white gold shines like the first day. Best decision and absolutely recommendable.</p><div class="rc-au"><div class="rc-av">TM</div><div><div class="rc-nm">Thomas M.</div><div class="rc-lo">Zürich · Verifiziert</div></div></div></div>
-      <div class="rc rv d2"><div class="rc-s">★★★★★</div><div class="rc-q">"</div><p class="rc-t">Engraved necklace as a wedding gift — my wife wears it daily. BRILLANTI didn't just deliver jewelry, they created a memory for eternity.</p><div class="rc-au"><div class="rc-av">LR</div><div><div class="rc-nm">Lars R.</div><div class="rc-lo">Hamburg · Verifiziert</div></div></div></div>
+    <div class="rev-grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr));max-width:900px;margin:48px auto 0">
+      <div class="rc rv"><div class="rc-q" style="font-family:var(--display)">01</div><p class="rc-t"><strong>Direct contact.</strong> You speak with the designer, not a middleman. Your idea is understood, not filtered.</p></div>
+      <div class="rc rv d1"><div class="rc-q" style="font-family:var(--display)">02</div><p class="rc-t"><strong>Founding-client care.</strong> More time, more iterations, more attention than any large house can offer.</p></div>
+      <div class="rc rv d2"><div class="rc-q" style="font-family:var(--display)">03</div><p class="rc-t"><strong>Real certification.</strong> GIA / IGI certified diamonds, 18k solid gold. Every claim on paper, in your hand.</p></div>
     </div>
     <div style="text-align:center;margin-top:48px">
-      <a href="#contact" class="btn-red">Request now</a>
+      <a href="#contact" class="btn-red">Start your piece</a>
     </div>
   </div>
 </section>
